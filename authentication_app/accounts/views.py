@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.core.mail import send_mail
 from rest_framework.exceptions import AuthenticationFailed
 from .serializers import UserSerializer
 from .models import User
@@ -33,20 +34,17 @@ class LoginView(APIView):
             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
             'iat': datetime.datetime.utcnow()
         }
-
-        token = jwt.encode(payload, 'secret', algorithm='HS256').decode('utf-8')
-
-        response = Response()
-
+        token = jwt.encode(payload, 'secret', algorithm='HS256')
+        response = Response({
+            'message': 'Login successful',  # Success message
+            'user_id': user.id,  # Optionally include the user ID or any other relevant data
+        })
+        # Set the JWT token as a secure, HttpOnly cookie
         response.set_cookie(key='jwt', value=token, httponly=True)
-        response.data = {
-            'jwt': token
-        }
         return response
 
 
 class UserView(APIView):
-
     def get(self, request):
         token = request.COOKIES.get('jwt')
 
@@ -54,7 +52,8 @@ class UserView(APIView):
             raise AuthenticationFailed('Unauthenticated!')
 
         try:
-            payload = jwt.decode(token, 'secret', algorithm=['HS256'])
+            # Correct 'algorithms' should be a list of algorithms
+            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
         except jwt.ExpiredSignatureError:
             raise AuthenticationFailed('Unauthenticated!')
 
@@ -62,6 +61,29 @@ class UserView(APIView):
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
+class ForgotPasswordView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+
+        if not email:
+            raise AuthenticationFailed('Email is required.')
+
+        user = User.objects.filter(email=email).first()
+
+        if not user:
+            raise AuthenticationFailed('User with this email does not exist.')
+
+        # Here you would generate a password reset link, token, etc.
+        reset_link = f"http://localhost:8000/reset-password/{user.id}"
+
+        send_mail(
+            'Password Reset Request',
+            f'Please click the link to reset your password: {reset_link}',
+            'noreply@example.com',
+            [email],
+            fail_silently=False,
+        )
+        return Response({"message": "Password reset link has been sent."})
 
 class LogoutView(APIView):
     def post(self, request):

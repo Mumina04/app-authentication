@@ -1,10 +1,10 @@
 from django.urls import path
-from accounts.views import LogoutView, SignupView,  LoginView, UserView
+from accounts.views import LogoutView, SignupView,  LoginView, UserView, ForgotPasswordView
 
 
 urlpatterns = [
     # Endpoint posts from views.ForgotPasswordView
-    #path('forgot-password', ForgotPasswordView.as_view(), name='forgot_password'),
+    path('forgot-password', ForgotPasswordView.as_view()),
     # Endpoint posts from views.SignupView
     path('signup', SignupView.as_view()),
     # Endpoint posts from views.LoginView
