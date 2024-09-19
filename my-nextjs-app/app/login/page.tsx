@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import router from "next/router"; // Import the useRouter hook
+
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -16,23 +18,21 @@ export default function Home() {
   const validateForm = () => {
     let valid = true;
     const newErrors = { email: "", password: "" };
-
     // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       newErrors.email = "Invalid email format.";
       valid = false;
     }
-
     // Validate password (e.g., minimum 6 characters)
     if (formData.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters.";
       valid = false;
     }
-
     setErrors(newErrors);
     return valid;
   };
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -41,13 +41,14 @@ export default function Home() {
     });
   };
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
     try {
-      const response = await fetch("/api/login", {
+      const response = await fetch("http://localhost:8000/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,6 +59,7 @@ export default function Home() {
       if (response.ok) {
         const data = await response.json();
         console.log("Login successful:", data);
+        router.push("/");
       } else {
         console.error("Login failed");
       }
