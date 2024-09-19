@@ -19,6 +19,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.text-gradient {
+  background: linear-gradient(90deg, red, blue, green);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -67,7 +67,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-400 to-white">
       <main className="w-full max-w-sm p-8 bg-white shadow-md rounded-lg">
         <h1 className="text-2xl font-bold text-center mb-6 text-black">Login</h1>
 
@@ -79,7 +79,7 @@ export default function Home() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full p-3 mb-1 border border-green-500 rounded-lg focus:outline-none focus:border-green-500"
+            className="w-full p-3 mb-1 border border-black rounded-lg focus:outline-none focus:border-black"
           />
           {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
 
@@ -90,7 +90,7 @@ export default function Home() {
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full p-3 mb-1 border border-green-500 rounded-lg focus:outline-none focus:border-green-500"
+            className="w-full p-3 mb-1 border border-black rounded-lg focus:outline-none focus:border-black"
           />
           {errors.password && (
             <p className="text-red-500 text-sm">{errors.password}</p>

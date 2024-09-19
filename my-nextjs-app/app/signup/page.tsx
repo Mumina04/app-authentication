@@ -41,27 +41,27 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-pink-100">
       <main className="w-full max-w-sm p-8 bg-white shadow-md rounded-lg">
-        <h1 className="text-2xl font-bold text-center mb-6">Sign Up</h1>
+        <h1 className="text-black text-2xl font-bold text-center mb-6">Sign Up</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="Please Enter your Email"
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border boarder-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black-100"
           />
           <input
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder=" Please enter your Password"
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black-100"
           />
           <button
             type="submit"

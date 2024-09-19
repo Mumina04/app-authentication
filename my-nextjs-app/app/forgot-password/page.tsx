@@ -32,9 +32,10 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg blue-100">
+        
       <main className="w-full max-w-sm p-8 bg-white shadow-md rounded-lg">
-        <h1 className="text-2xl font-bold text-center mb-6">Forgot Password</h1>
+        <h1 className=" text-black text-2xltext  font-bold text-center mb-6">Forgot Password</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="email"
@@ -52,6 +53,7 @@ export default function ForgotPassword() {
             Send Reset Link
           </button>
         </form>
+        
       </main>
     </div>
   );
