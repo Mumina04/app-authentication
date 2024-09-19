@@ -1,35 +1,34 @@
-"use client"; // Make this a client component
+"use client";
 
-import { useState } from "react";
+import React, { SyntheticEvent, useState } from 'react';
+import { useRouter } from "next/navigation";
+import Link from 'next/link';
 
-export default function ForgotPassword() {
-  const [email, setEmail] = useState("");
+const ForgotPassword = () => {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const router = useRouter();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:8000/api/forgot-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+    const response = await fetch('http://localhost:8000/api/forgot-password', {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email
+      })
+    });
 
-      if (response.ok) {
-        console.log("Password reset email sent");
-      } else {
-        console.error("Failed to send password reset email");
-      }
-    } catch (error) {
-      console.error("An error occurred:", error);
+    if (response.ok) {
+      setMessage("Password reset link has been sent to your email.");
+      setTimeout(() => {
+        router.push('/login');
+      }, 3000);  // Redirect to login after 3 seconds
+    } else {
+      setMessage("Failed to send reset link. Please try again.");
     }
-  };
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg blue-100">
@@ -39,16 +38,15 @@ export default function ForgotPassword() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="email"
-            name="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={handleChange}
-            required
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Email"
+            required
+            onChange={e => setEmail(e.target.value)}
           />
+
           <button
             type="submit"
-            className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors mt-4"
           >
             Send Reset Link
           </button>
@@ -57,4 +55,6 @@ export default function ForgotPassword() {
       </main>
     </div>
   );
-}
+};
+
+export default ForgotPassword;
