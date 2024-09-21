@@ -20,7 +20,7 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(90deg, red, blue, green);
+  background: linear-gradient(90deg, rgb(17, 255, 0), blue, green);
   -webkit-background-clip: text;
   color: transparent;
 }
