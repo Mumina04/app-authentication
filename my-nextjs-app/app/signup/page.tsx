@@ -28,46 +28,38 @@ const Sign_up = () => {
 
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-pink-100">
-        <main className="w-full max-w-sm p-8 bg-white shadow-md rounded-lg">
-          <h1 className="text-black text-2xl font-bold text-center mb-6">Sign Up</h1>
-          <form onSubmit={submit}>
-
-              <input 
-              className="w-full px-4 py-2 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black-100"
-              placeholder="Name"
-              required
-                      onChange={e => setName(e.target.value)}
-              />
-
-              <input type="email"
-              className="w-full px-4 py-2 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black-100" 
-              placeholder="Please Enter your Email"
-              required
-                      onChange={e => setEmail(e.target.value)}
-              />
-
-              <input
-              type="password"
-              className="w-full px-4 py-2 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black-100"
-              placeholder="Please enter your Password"
-              required
-                      onChange={e => setPassword(e.target.value)}
-              />
-            <button
+      <main className="w-full max-w-sm p-8 bg-white shadow-md rounded-lg">
+        <h1 className="text-black text-2xl font-bold text-center mb-6">Sign Up</h1>
+        <form onSubmit={submit} className="space-y-4">
+          <input
+            className="w-full px-4 py-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black-100"
+            placeholder=" Please Enter your Name"
+            required
+            onChange={e => setName(e.target.value)}
+          />
+          <input
+            type="email"
+            className="w-full px-4 py-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black-100"
+            placeholder="Please Enter your Email"
+            required
+            onChange={e => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            className="w-full px-4 py-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black-100"
+            placeholder="Please enter your Password"
+            required
+            onChange={e => setPassword(e.target.value)}
+          />
+          <button
             type="submit"
-            className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
           >
             Sign Up
-            </button>
-          </form>
-          <div className="mt-6 text-center">
-          <Link href="/login" className="inline-block py-2 px-4 bg-gray-300 text-black rounded-lg hover:bg-gray-400 transition-colors">
-            Go to Login
-          </Link>
-        </div>
+          </button>
+        </form>
       </main>
     </div>
     );
-};
-
+    }; 
 export default Sign_up;

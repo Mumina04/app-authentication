@@ -34,37 +34,38 @@ const Login = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-400 to-white">
         <main className="w-full max-w-sm p-8 bg-white shadow-md rounded-lg">
           <h1 className="text-2xl font-bold text-center mb-6 text-black">Login</h1>
-          <form onSubmit={submit}>
 
-            <div className="form-group">
-              <input 
-                type="email" 
-                className="w-full p-3 mb-1 border border-black rounded-lg focus:outline-none focus:border-black"
-                placeholder="Please enter your email" 
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                required 
-              />
-            </div>
+        <form onSubmit={submit}>
+  <div className="form-group">
+    <input 
+      type="email" 
+      className="w-full p-3 mb-1 border border-black rounded-lg focus:outline-none focus:border-black bg-white text-black" 
+      placeholder="Please enter your email" 
+      value={email}
+      onChange={e => setEmail(e.target.value)}
+      required 
+    />
+  </div>
 
-            <div className="form-group">
-              <input 
-                type="password" 
-                className="w-full p-3 mb-1 border border-black rounded-lg focus:outline-none focus:border-black" 
-                placeholder="Please enter password" 
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                required 
-              />
-            </div>
+  <div className="form-group">
+    <input 
+      type="password" 
+      className="w-full p-3 mb-1 border border-black rounded-lg focus:outline-none focus:border-black bg-white text-black" 
+      placeholder="Please enter password" 
+      value={password}
+      onChange={e => setPassword(e.target.value)}
+      required 
+    />
+  </div>
 
-            <button
-                type="submit"
-                className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-              >
-                Log In
-              </button>
-          </form>
+  <button
+    type="submit"
+    className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+  >
+    Log In
+  </button>
+</form>
+
             <p className="mt-4 text-center text-black">
             Don’t have an account?{" "}
             <Link href="/signup" className="text-blue-500 hover:underline">
