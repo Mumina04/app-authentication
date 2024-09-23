@@ -31,7 +31,11 @@ const ForgotPassword = () => {
   }
 
   return (
+<<<<<<< HEAD
     <div className="flex flex-col items-center justify-center min-h-screen bg-blue-100">
+=======
+    <div className="flex flex-col items-center justify-center min-h-screen bg blue-100">  
+>>>>>>> c17aee548e24c8d88a2005766a0450eeeadc91a2
       <main className="w-full max-w-sm p-8 bg-white shadow-md rounded-lg">
         <h1 className="text-black text-2xl font-bold text-center mb-6">Forgot Password</h1>
         <form onSubmit={submit} className="flex flex-col gap-4">
